@@ -1,0 +1,20 @@
+# Handle line endings automatically for files detected as text
+* text=auto
+
+# Denote all Python files as text
+*.py text
+
+# Images (example of binary files)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+
+# Windows EXE files
+*.exe binary
+
+# Audio files (common in game development)
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.flac binary
