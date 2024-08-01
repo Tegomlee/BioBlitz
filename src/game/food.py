@@ -20,4 +20,12 @@ class Food:
     def render(self, screen):
         pygame.draw.circle(screen, self._color, self._position, self._size)
 
-        
+
+    # Getter method for the food's position (mainly used for collision)
+    def get_position(self) -> pygame.Vector2:
+        return self._position
+    
+
+    # Getter method for the food's size (mainly used for collision)
+    def get_size(self) -> float:
+        return self._size

@@ -2,7 +2,7 @@ import pygame
 
 class Player:
 
-    def __init__(self, color, starting_position) -> None:
+    def __init__(self, color: pygame.Color, starting_position) -> None:
         self._position = pygame.Vector2(starting_position)
         self._color = color
         self._size = 20.0
@@ -35,3 +35,13 @@ class Player:
     # The rendering happens here
     def render(self, screen) -> None:
         pygame.draw.circle(screen, self._color, self._position, self._size)
+
+
+    # Getter method for the player's position (mainly used for collision)
+    def get_position(self) -> pygame.Vector2:
+        return self._position
+    
+
+    # Getter method for the player's size (mainly used for collision)
+    def get_size(self) -> float:
+        return self._size

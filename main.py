@@ -4,6 +4,7 @@ import random
 
 from src.game import Player
 from src.game import Food
+from src.game import Collisions
 
 
 # Random color for the player
@@ -13,6 +14,14 @@ def get_random_color():
     b = random.randint(0, 255) # blue
 
     return (r, g, b)
+
+
+# Calls the static method for rchecking collisions
+def check_collisions(player: Player, foods: list[Food]):
+    food = Collisions.check_for_collisions_between(player, foods)
+
+    if food is not None:
+        food.randomize_position()
 
 
 # Main function
@@ -38,22 +47,29 @@ def main() -> None:
     # Main game loop
     while running:
         
-        # Event Handling
+        # Event Handling ---------------------------------------------------------
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # Check if the 'x' button is pressed
                 running = False
+
+        # ------------------------------------------------------------------------
         
-        # Process GameObjects
+        # Process GameObjects ----------------------------------------------------
         delta_time = clock.tick(60) / 1000 # Used for frame rate independence
 
         #TODO: Put game objects here for updating
         player.process(delta_time)
 
+        # Check for collisions
+        check_collisions(player, foods)
+
         #DEBUGGING: Print the fps to the console
         fps = clock.get_fps()
         print(f'FPS: {fps:.2f}')
 
-        # Render GameObjects
+        # ------------------------------------------------------------------------
+
+        # Render GameObjects -----------------------------------------------------
         screen.fill("grey58") # Clean the screen
 
         #TODO: Put game objects here for rendering
@@ -63,6 +79,8 @@ def main() -> None:
             food.render(screen)
 
         pygame.display.flip() # Sends the final frame to the monitor
+
+        # ------------------------------------------------------------------------
 
 
 # Main entry point
