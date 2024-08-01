@@ -3,6 +3,7 @@ import pygame
 import random
 
 from src.game import Player
+from src.game import Food
 
 
 # Random color for the player
@@ -27,6 +28,13 @@ def main() -> None:
     player_color = get_random_color()
     player = Player(color=player_color, starting_position=(640, 360))
 
+    # Initialize the food list
+    foods = []
+    for i in range(0, 7):
+        food = Food(get_random_color())
+        food.randomize_position()
+        foods.append(food)
+
     # Main game loop
     while running:
         
@@ -50,6 +58,9 @@ def main() -> None:
 
         #TODO: Put game objects here for rendering
         player.render(screen)
+
+        for food in foods:
+            food.render(screen)
 
         pygame.display.flip() # Sends the final frame to the monitor
 
