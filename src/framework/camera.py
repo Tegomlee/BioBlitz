@@ -26,6 +26,11 @@ License: GPL v3.0
 
 Dependencies:
 - pygame
+
+Modifications:
+08-03-2024 (Tegomlee) - Added linear interpolation to the camera class to
+                        allow for smoother camera movement and add more life
+                        to the game.
 """
 
 import pygame
@@ -37,6 +42,7 @@ class Camera:
         self._width = width
         self._height = height
         self._surface = pygame.Surface((width, height), pygame.SRCALPHA)
+        self._lerp_factor = 0.1
 
 
     # Adjust entity's position based on the camera's position and draw it
@@ -47,8 +53,11 @@ class Camera:
 
     # Center the camera on the target (usually the player)
     def update(self, target: pygame.sprite.Sprite) -> None:
-        self._camera.x = target.rect.centerx - self._width // 2
-        self._camera.y = target.rect.centery - self._height // 2
+        target_x = target.rect.centerx - self._width // 2
+        target_y = target.rect.centery - self._height // 2
+
+        self._camera.x = self._lerp(self._camera.x, target_x, self._lerp_factor)
+        self._camera.y = self._lerp(self._camera.y, target_y, self._lerp_factor)
 
         print(f"Camera Position: {self._camera.x}, {self._camera.y}")
 
@@ -57,3 +66,8 @@ class Camera:
     def render(self, screen: pygame.Surface) -> None:
         screen.blit(self._surface, (0, 0))
         self._surface.fill((0, 0, 0, 0)) #Clear the surface for the next frame
+
+
+    # Linear interpolation helper function
+    def _lerp(self, start: float, end: float, factor: float) -> float:
+        return start + (end - start) * factor
