@@ -1,31 +1,63 @@
+"""
+    BioBlitz is an Agar.io clone in python I wrote for Educational purposes
+    Copyright (C) 2024  Bryan Sanchez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
+"""
+File: food.py
+Description: Defines the Food class for the game.
+             Defines the food's randomization of position
+               for reusing of resources
+Author: Tegomlee
+Date: 07-31-2024
+License: GPL v3.0
+
+Dependencies:
+- pygame
+- random
+
+Modifications:
+08-02-2024 (Tegomlee) - Removed the rendering logic and getters from the class.
+                        Made the class inherit Sprite()
+"""
+
 import pygame
 
 import random
 
-class Food:
+class Food(pygame.sprite.Sprite):
 
     def __init__(self, color):
+        # Super class initialization: Sprite()
+        super().__init__()
+
+        # Member variable initialization
         self._color = color
         self._position = pygame.Vector2(0, 0)
         self._size = 10.0
 
+        # Set the food's sprite
+        self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)
+        pygame.draw.circle(self.image, self._color, (self._size, self._size), self._size)
+        self.rect = self.image.get_rect(center=self._position)
+
 
     def randomize_position(self):
-        x = random.randrange(-100, 100)
-        y = random.randrange(-100, 100)
+        x = random.randrange(-20, 20)
+        y = random.randrange(-20, 20)
 
         self._position = pygame.Vector2(x, y)
-
-
-    def render(self, screen):
-        pygame.draw.circle(screen, self._color, self._position, self._size)
-
-
-    # Getter method for the food's position (mainly used for collision)
-    def get_position(self) -> pygame.Vector2:
-        return self._position
-    
-
-    # Getter method for the food's size (mainly used for collision)
-    def get_size(self) -> float:
-        return self._size
+        self.rect.center = self._position

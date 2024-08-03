@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import pygame
 from src.game import Player
 
@@ -29,7 +29,11 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.player._position, pygame.Vector2(640, 360))
         self.assertEqual(self.player._color, ('lime'))
         self.assertEqual(self.player._size, 20.0)
-        self.assertEqual(self.player._speed, 100.0)
+        self.assertEqual(self.player._speed, 300.0)
+
+        # Check rect initialization
+        self.assertEqual(self.player.rect.center, (640, 360))
+        self.assertEqual(self.player.rect.size, (self.player._size * 2, self.player._size * 2))
 
 
     @patch('pygame.key.get_pressed')
@@ -41,13 +45,5 @@ class TestPlayer(unittest.TestCase):
         self.player.process(1)  # Simulate 1 second of time passing
 
         # Check if player moved to the right
-        self.assertEqual(self.player._position.x, initial_position[0] + 100.0)
+        self.assertEqual(self.player._position.x, initial_position[0] + 300.0)
         self.assertEqual(self.player._position.y, initial_position[1])
-
-
-    def test_player_render(self):
-        # Mock the screen and render the player
-        self.player.render(self.screen)
-
-        # No direct way to check rendering, but we can ensure no errors were raised
-        self.assertTrue(True)

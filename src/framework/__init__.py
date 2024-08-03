@@ -16,5 +16,5 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from .player import Player
-from .food import Food
+from .collisions import Collisions
+from .camera import Camera
