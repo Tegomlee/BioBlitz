@@ -17,32 +17,38 @@
 """
 
 """
-File: collisions.py
-Description: Defines the Collisions static class for the game.
-             Handles all collsion based functionality.
+File: debug.py
+Description: Defines the Debug class to introduce some more utility to print
+             statements. Will also have colors in the console
 Author: Bryan Sanchez [Tegomlee]
-Date: 08-01-2024
+Date: 08-03-2024
 License: GPL v3.0
 
 Dependencies:
-- pygame
-
-Modifications:
-08-02-2024 (Tegomlee) - Made the class more generic.
-                        Specifically meant to handle pygame Sprite()
+- colorama
+- typing
+- datetime
 """
 
-# Imports
-import pygame
+from colorama import Fore, Style
+from typing import Any
+from datetime import datetime
 
-# Class that handles all collisions in the game
-class Collisions:
+class Debug:
 
     @staticmethod
-    def check_for_collisions_between(main_object: pygame.sprite.Sprite, object_list: list[pygame.sprite.Sprite]) -> pygame.sprite.Sprite:
-        # Iterate through each item in the list
-        for object_in_list in object_list:
-            if main_object.rect.colliderect(object_in_list.rect):
-                return object_in_list
-            
-        return None
+    def log(param: Any) -> None:
+        time_string = datetime.now().strftime("%H:%M:%S")
+        print(f"[LOG] [{time_string}] - {param}")
+
+
+    @staticmethod
+    def log_warning(param: Any) -> None:
+        time_string = datetime.now().strftime("%H:%M:%S")
+        print(f"{Fore.YELLOW}[WARNING] [{time_string}] - {param}{Style.RESET_ALL}")
+
+
+    @staticmethod
+    def log_error(param: Any) -> None:
+        time_string = datetime.now().strftime("%H:%M:%S")
+        print(f"{Fore.RED}[ERROR] [{time_string}] - {param}{Style.RESET_ALL}")

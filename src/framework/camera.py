@@ -20,7 +20,7 @@
 File: camera.py
 Description: Defines the Camera class for the game.
              Creates and manages a pygame Surface to render the game
-Author: Tegomlee
+Author: Bryan Sanchez [Tegomlee]
 Date: 08-02-2024
 License: GPL v3.0
 

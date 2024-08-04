@@ -20,7 +20,7 @@
 File: player.py
 Description: Defines the Player class for the game.
              Defines the player's logic in the process function
-Author: Tegomlee
+Author: Bryan Sanchez [Tegomlee]
 Date: 07-31-2024
 License: GPL v3.0
 

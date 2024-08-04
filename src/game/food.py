@@ -21,7 +21,7 @@ File: food.py
 Description: Defines the Food class for the game.
              Defines the food's randomization of position
                for reusing of resources
-Author: Tegomlee
+Author: Bryan Sanchez [Tegomlee]
 Date: 07-31-2024
 License: GPL v3.0
 

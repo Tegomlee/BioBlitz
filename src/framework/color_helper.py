@@ -17,32 +17,32 @@
 """
 
 """
-File: collisions.py
-Description: Defines the Collisions static class for the game.
-             Handles all collsion based functionality.
+File: color_helper.py
+Description: Definition for the ColorHelper() class, this class will basically
+             randomize the colors of entities. It's sole purpose is to clear some
+             of main.py
 Author: Bryan Sanchez [Tegomlee]
-Date: 08-01-2024
+Date: 08-03-2024
 License: GPL v3.0
 
 Dependencies:
 - pygame
-
-Modifications:
-08-02-2024 (Tegomlee) - Made the class more generic.
-                        Specifically meant to handle pygame Sprite()
+- random
 """
 
-# Imports
 import pygame
 
-# Class that handles all collisions in the game
-class Collisions:
+import random
 
+class ColorHelper:
+
+    # Generates a random color by randomizing the {R, G, B} values
     @staticmethod
-    def check_for_collisions_between(main_object: pygame.sprite.Sprite, object_list: list[pygame.sprite.Sprite]) -> pygame.sprite.Sprite:
-        # Iterate through each item in the list
-        for object_in_list in object_list:
-            if main_object.rect.colliderect(object_in_list.rect):
-                return object_in_list
-            
-        return None
+    def get_random_color() -> pygame.Color:
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+
+        color = pygame.Color(r, g, b)
+
+        return color

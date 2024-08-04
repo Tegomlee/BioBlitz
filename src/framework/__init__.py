@@ -18,3 +18,5 @@
 
 from .collisions import Collisions
 from .camera import Camera
+from .color_helper import ColorHelper
+from .debug import Debug

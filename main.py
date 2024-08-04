@@ -46,15 +46,7 @@ from src.game import Food
 
 from src.framework import Camera
 from src.framework import Collisions
-
-
-# Random color for the player
-def get_random_color():
-    r = random.randint(0, 255) # red
-    g = random.randint(0, 255) # green
-    b = random.randint(0, 255) # blue
-
-    return (r, g, b)
+from src.framework import ColorHelper
 
 
 # Calls the static method for rchecking collisions
@@ -76,13 +68,13 @@ def main() -> None:
     font = pygame.font.SysFont(None, 30) # used for drawing info to the screen
 
     # Initialize the player
-    player_color = get_random_color()
+    player_color = ColorHelper.get_random_color()
     player = Player(color=player_color, starting_position=(640, 360))
 
     # Initialize the food list
     food_list = []
     for i in range(0, 7):
-        food = Food(get_random_color())
+        food = Food(ColorHelper.get_random_color())
         food.randomize_position()
         food_list.append(food)
 
