@@ -46,3 +46,4 @@ class ColorHelper:
         color = pygame.Color(r, g, b)
 
         return color
+    
