@@ -39,8 +39,6 @@ Modifications:
 
 import pygame
 
-import random
-
 from src.game import Player
 from src.game import Food
 
