@@ -60,8 +60,8 @@ class Food(pygame.sprite.Sprite):
 
 
     def randomize_position(self):
-        x = random.randrange(-20, 20)
-        y = random.randrange(-20, 20)
+        x = random.randrange(-Constants.MAP_SIZE_X.value, Constants.MAP_SIZE_X.value)
+        y = random.randrange(-Constants.MAP_SIZE_Y.value, Constants.MAP_SIZE_Y.value)
 
         self._position = pygame.Vector2(x, y)
         self.rect.center = self._position

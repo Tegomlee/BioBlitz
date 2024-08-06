@@ -72,7 +72,7 @@ def main() -> None:
 
     # Initialize the food list
     food_list = []
-    for i in range(0, 7):
+    for i in range(0, 5000):
         food = Food(ColorHelper.get_random_color())
         food.randomize_position()
         food_list.append(food)
