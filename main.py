@@ -35,6 +35,8 @@ Modifications:
 
 08-02-2024 (Tegomlee) - Added the Camera references to the main entry point to
                             handle rendering of the game.
+
+08-05-2024 (Tegomlee) - Added the functionality to grow the player.
 """
 
 import pygame
@@ -48,12 +50,13 @@ from src.framework import Collisions
 from src.framework import ColorHelper
 
 
-# Calls the static method for rchecking collisions
+# Calls the static method for checking collisions
 def check_collisions(player: Player, foods: list[Food]):
     food = Collisions.check_for_collisions_between(player, foods)
 
     if food is not None:
         food.randomize_position()
+        player.increase_size()
 
 
 # Main function

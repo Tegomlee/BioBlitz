@@ -33,6 +33,7 @@ Modifications:
 
 08-05-2024 (Tegomlee) - Added the constants to the player class.
                         Implemented the debug class.
+                        Created the function to grow and redraw the player with its new size.
 """
 
 import pygame
@@ -90,4 +91,10 @@ class Player(pygame.sprite.Sprite):
 
         Debug.log(f"Player Position {self._position}")
 
-player = Player("red", pygame.Vector2(0, 0))
+
+    def increase_size(self) -> None:
+        self._size += 0.1
+
+        self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)
+        pygame.draw.circle(self.image, self._color, (self._size, self._size), self._size)
+        self.rect = self.image.get_rect(center=self._position)
