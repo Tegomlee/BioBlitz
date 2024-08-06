@@ -32,11 +32,15 @@ Dependencies:
 Modifications:
 08-02-2024 (Tegomlee) - Removed the rendering logic and getters from the class.
                         Made the class inherit Sprite()
+
+08-05-2024 (Tegomlee) - Implemented the constants enums to the food class.
 """
 
 import pygame
 
 import random
+
+from .constants import Constants
 
 class Food(pygame.sprite.Sprite):
 
@@ -47,7 +51,7 @@ class Food(pygame.sprite.Sprite):
         # Member variable initialization
         self._color = color
         self._position = pygame.Vector2(0, 0)
-        self._size = 10.0
+        self._size = Constants.FOOD_SIZE
 
         # Set the food's sprite
         self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)

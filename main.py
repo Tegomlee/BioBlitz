@@ -41,6 +41,7 @@ import pygame
 
 from src.game import Player
 from src.game import Food
+from src.game import Constants
 
 from src.framework import Camera
 from src.framework import Collisions
@@ -60,7 +61,7 @@ def main() -> None:
 
     # Initialize the pygame API
     pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
+    screen = pygame.display.set_mode((Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT))
     clock = pygame.time.Clock() # used for deltaTime
     running = True
     font = pygame.font.SysFont(None, 30) # used for drawing info to the screen
@@ -79,7 +80,7 @@ def main() -> None:
     foods = tuple(food_list)
 
     # Initialize the camera
-    camera = Camera(1280, 720)
+    camera = Camera(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT)
 
     # Main game loop
     while running:

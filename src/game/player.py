@@ -29,11 +29,17 @@ Dependencies:
 
 Modifications:
 08-02-2024 (Tegomlee) - Removed the rendering logic and getters from the class.
-                        Made the class inherit Sprite()
+                        Made the class inherit Sprite().
 
+08-05-2024 (Tegomlee) - Added the constants to the player class.
+                        Implemented the debug class.
 """
 
 import pygame
+
+from .constants import Constants
+
+from src.framework import Debug
 
 class Player(pygame.sprite.Sprite):
 
@@ -44,8 +50,8 @@ class Player(pygame.sprite.Sprite):
         # Initialize the plyer's member variables
         self._position = pygame.Vector2(starting_position)
         self._color = color
-        self._size = 20.0
-        self._speed = 300.0
+        self._size = Constants.PLAYER_SIZE
+        self._speed = Constants.PLAYER_SPEED
 
         # Set up the player's sprite
         self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)
@@ -72,10 +78,16 @@ class Player(pygame.sprite.Sprite):
         if not direction.magnitude() < 0.1:
             direction = direction.normalize()
 
+        # Clamp the position of the player to the map size
+        self._position.x = pygame.math.clamp(self._position.x, -Constants.MAP_SIZE_X.value, Constants.MAP_SIZE_X.value)
+        self._position.y = pygame.math.clamp(self._position.y, -Constants.MAP_SIZE_Y.value, Constants.MAP_SIZE_Y.value)
+
         # Apply the normalized direction to the player's position
         self._position += direction * self._speed * delta_time
 
         # Apply the position to rect transform
         self.rect.center = self._position
 
-        print(f"Player Position: {self._position}")
+        Debug.log(f"Player Position {self._position}")
+
+player = Player("red", pygame.Vector2(0, 0))

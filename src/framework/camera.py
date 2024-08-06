@@ -59,8 +59,6 @@ class Camera:
         self._camera.x = self._lerp(self._camera.x, target_x, self._lerp_factor)
         self._camera.y = self._lerp(self._camera.y, target_y, self._lerp_factor)
 
-        print(f"Camera Position: {self._camera.x}, {self._camera.y}")
-
 
     # Blit the camera's surface onto the main screen
     def render(self, screen: pygame.Surface) -> None:

@@ -16,6 +16,32 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from .player import Player
-from .food import Food
-from .constants import Constants
+"""
+File: constants.py
+Description: Defines a set of constants gor the game as enums
+                due to their immutability
+Author: Bryan Sanchez [Tegomlee]
+Date: 08-05-2024
+License: GPL v3.0
+
+Dependencies:
+- enum
+"""
+
+from enum import Enum
+
+class Constants(Enum):
+    # Window
+    WINDOW_WIDTH = 1280
+    WINDOW_HEIGHT = 720
+
+    # Map Size
+    MAP_SIZE_X = 5000
+    MAP_SIZE_Y = 5000
+
+    # Player
+    PLAYER_SIZE = 20.0
+    PLAYER_SPEED = 300.0
+
+    # Food
+    FOOD_SIZE = 10.0
