@@ -50,8 +50,8 @@ class Player(pygame.sprite.Sprite):
         # Initialize the plyer's member variables
         self._position = pygame.Vector2(starting_position)
         self._color = color
-        self._size = Constants.PLAYER_SIZE
-        self._speed = Constants.PLAYER_SPEED
+        self._size = Constants.PLAYER_SIZE.value
+        self._speed = Constants.PLAYER_SPEED.value
 
         # Set up the player's sprite
         self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)

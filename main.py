@@ -61,7 +61,7 @@ def main() -> None:
 
     # Initialize the pygame API
     pygame.init()
-    screen = pygame.display.set_mode((Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT))
+    screen = pygame.display.set_mode((Constants.WINDOW_WIDTH.value, Constants.WINDOW_HEIGHT.value))
     clock = pygame.time.Clock() # used for deltaTime
     running = True
     font = pygame.font.SysFont(None, 30) # used for drawing info to the screen
@@ -80,7 +80,7 @@ def main() -> None:
     foods = tuple(food_list)
 
     # Initialize the camera
-    camera = Camera(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT)
+    camera = Camera(Constants.WINDOW_WIDTH.value, Constants.WINDOW_HEIGHT.value)
 
     # Main game loop
     while running:

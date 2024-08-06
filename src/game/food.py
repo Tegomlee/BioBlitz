@@ -51,7 +51,7 @@ class Food(pygame.sprite.Sprite):
         # Member variable initialization
         self._color = color
         self._position = pygame.Vector2(0, 0)
-        self._size = Constants.FOOD_SIZE
+        self._size = Constants.FOOD_SIZE.value
 
         # Set the food's sprite
         self.image = pygame.Surface((self._size * 2, self._size * 2), pygame.SRCALPHA)
